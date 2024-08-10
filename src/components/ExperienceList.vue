@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { Experience } from "@/types/experienceType";
-import sanityClient from "../sanityClient";
+import { fetchExperiences } from "@/sanity/experience";
 import { ref, onMounted } from "vue";
 
 const experiences = ref<Experience[]>([]);
@@ -47,23 +47,8 @@ const formatYear = (dateString: string) => {
   return date.getFullYear();
 };
 
-const fetchExperiences = async () => {
-  experiences.value = await sanityClient.fetch<Experience[]>(
-    `*[_type == "experience"]{
-      _id,
-      jobTitle,
-      company,
-      description,
-      from,
-      to,
-      link,
-      "frameworks": frameworks[]->{name, version}
-    }`
-  );
-};
-
-onMounted(() => {
-  fetchExperiences();
+onMounted(async () => {
+  experiences.value = await fetchExperiences();
 });
 </script>
 

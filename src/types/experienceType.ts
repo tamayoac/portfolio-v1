@@ -1,4 +1,4 @@
-import { Framework } from "./frameworkType";
+import { Framework } from "@/types/frameworkType";
 
 export interface Experience {
   _id: string;
