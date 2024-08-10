@@ -2,18 +2,18 @@
   <div class="name-title-details">
     <h1>{{ name }}</h1>
     <h2>{{ title }}</h2>
-    <p>{{ details }}</p>
+    <p>{{ introduction }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { defineProps } from "vue";
 
-const name = ref("Alfred Christopher Tamayo III");
-const title = ref("Software Developer");
-const details = ref(
-  "Experienced in building web applications using modern technologies."
-);
+const props = defineProps<{
+  name: string;
+  title: string;
+  introduction: string;
+}>();
 </script>
 
 <style scoped>

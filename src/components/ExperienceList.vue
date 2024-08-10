@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="flex-grow flex-shrink basis-0">
-          <h1 class="text-lg">
+          <h1 class="text-lg hover:text-blue-500 text-black dark:text-white">
             {{ experience.jobTitle }} at
             <a :href="experience.link" target="_blank">{{
               experience.company
@@ -36,24 +36,25 @@
 </template>
 
 <script setup lang="ts">
-import { useExperienceStore } from "@/store/experienceStore";
-import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
-
-const experienceStore = useExperienceStore();
-
-const { experiences, loading, error } = storeToRefs(experienceStore);
-
-const { loadExperiences } = experienceStore;
+import { defineProps } from "vue";
+import { Framework } from "@/types/frameworkType";
+const props = defineProps<{
+  experiences: Array<{
+    _id: string;
+    jobTitle: string;
+    company: string;
+    description: string;
+    from: string;
+    to: string;
+    link: string;
+    frameworks: Framework[];
+  }>;
+}>();
 
 const formatYear = (dateString: string) => {
   const date = new Date(dateString);
   return date.getFullYear();
 };
-
-onMounted(async () => {
-  await loadExperiences();
-});
 </script>
 
 <style scoped>
