@@ -1,6 +1,6 @@
 <template>
   <div class="experiences">
-    <ul>
+    <ul v-if="experiences.length">
       <li
         v-for="experience in experiences"
         :key="experience._id"
@@ -36,11 +36,15 @@
 </template>
 
 <script setup lang="ts">
-import { Experience } from "@/types/experienceType";
-import { fetchExperiences } from "@/sanity/experience";
-import { ref, onMounted } from "vue";
+import { useExperienceStore } from "@/store/experienceStore";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
-const experiences = ref<Experience[]>([]);
+const experienceStore = useExperienceStore();
+
+const { experiences, loading, error } = storeToRefs(experienceStore);
+
+const { loadExperiences } = experienceStore;
 
 const formatYear = (dateString: string) => {
   const date = new Date(dateString);
@@ -48,7 +52,7 @@ const formatYear = (dateString: string) => {
 };
 
 onMounted(async () => {
-  experiences.value = await fetchExperiences();
+  await loadExperiences();
 });
 </script>
 
