@@ -10,9 +10,11 @@
         <ProfileHeader />
       </div>
       <div
-        class="right-section flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 transition-colors"
+        class="right-section flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 transition-colors flex flex-col"
       >
-        <DarkModeToggle />
+        <div class="flex justify-end">
+          <DarkModeToggle />
+        </div>
         <AboutSection />
         <ExperienceList />
       </div>

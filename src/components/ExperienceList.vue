@@ -4,12 +4,12 @@
       <li
         v-for="experience in experiences"
         :key="experience._id"
-        class="flex flex-wrap hover:bg-gray-100 p-3 rounded-lg hover:shadow-md"
+        class="flex flex-wrap p-3 rounded-lg hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700"
       >
         <div class="flex-grow-0 flex-shrink-0 basis-1/5">
-          <p class="text-sm">
+          <div class="text-xs">
             {{ formatYear(experience.from) }} - {{ formatYear(experience.to) }}
-          </p>
+          </div>
         </div>
         <div class="flex-grow flex-shrink basis-0">
           <h1 class="text-lg">

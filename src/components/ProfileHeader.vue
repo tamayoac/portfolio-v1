@@ -18,7 +18,7 @@ const details = ref(
 
 <style scoped>
 .name-title-details {
-  text-align: center;
+  text-align: left;
   padding: 20px;
 }
 h1 {
