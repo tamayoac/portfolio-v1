@@ -9,7 +9,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-// Reactive state
 const name = ref("Alfred Christopher Tamayo III");
 const title = ref("Software Developer");
 const details = ref(

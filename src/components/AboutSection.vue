@@ -1,6 +1,5 @@
 <template>
   <div class="introduction">
-    <h2>Introduction</h2>
     <p>{{ introductionText }}</p>
   </div>
 </template>

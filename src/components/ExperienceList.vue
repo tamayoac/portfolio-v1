@@ -1,33 +1,70 @@
 <template>
   <div class="experiences">
-    <h2>Experiences</h2>
     <ul>
-      <li v-for="(experience, index) in experiences" :key="index">
-        <h3>{{ experience.role }} at {{ experience.company }}</h3>
-        <p>{{ experience.description }}</p>
+      <li
+        v-for="experience in experiences"
+        :key="experience._id"
+        class="flex flex-wrap hover:bg-gray-100 p-3 rounded-lg hover:shadow-md"
+      >
+        <div class="flex-grow-0 flex-shrink-0 basis-1/5">
+          <p class="text-sm">
+            {{ formatYear(experience.from) }} - {{ formatYear(experience.to) }}
+          </p>
+        </div>
+        <div class="flex-grow flex-shrink basis-0">
+          <h1 class="text-lg">
+            {{ experience.jobTitle }} at
+            <a :href="experience.link" target="_blank">{{
+              experience.company
+            }}</a>
+          </h1>
+          <p>{{ experience.description }}</p>
+
+          <ul class="flex flex-wrap gap-2 mt-2">
+            <li
+              v-for="framework in experience.frameworks"
+              :key="framework.name"
+              class="px-3 py-1 bg-blue-500 text-white rounded-full text-sm shadow-md hover:bg-blue-600 transition-colors"
+            >
+              {{ framework.name }}
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { Experience } from "@/types/experienceType";
+import sanityClient from "../sanityClient";
+import { ref, onMounted } from "vue";
 
-// Reactive state
-const experiences = ref([
-  {
-    role: "Frontend Developer",
-    company: "TechCorp",
-    description:
-      "Developed and maintained web applications with a focus on performance and user experience.",
-  },
-  {
-    role: "Backend Developer",
-    company: "DevSolutions",
-    description:
-      "Designed and implemented RESTful APIs for various business processes.",
-  },
-]);
+const experiences = ref<Experience[]>([]);
+
+const formatYear = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.getFullYear();
+};
+
+const fetchExperiences = async () => {
+  experiences.value = await sanityClient.fetch<Experience[]>(
+    `*[_type == "experience"]{
+      _id,
+      jobTitle,
+      company,
+      description,
+      from,
+      to,
+      link,
+      "frameworks": frameworks[]->{name, version}
+    }`
+  );
+};
+
+onMounted(() => {
+  fetchExperiences();
+});
 </script>
 
 <style scoped>
