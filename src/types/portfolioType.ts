@@ -4,7 +4,6 @@ import { Social } from "./socialType";
 export interface Portfolio {
   _id: string;
   name: string;
-  title: string;
   introduction: string;
   about: string;
   socials: Social[];

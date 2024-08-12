@@ -8,7 +8,7 @@
 import { defineProps } from "vue";
 
 const props = defineProps<{
-  about: Array<any>;
+  about: Array<string>;
 }>();
 </script>
 

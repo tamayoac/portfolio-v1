@@ -6,10 +6,15 @@ import { PortableText } from "@portabletext/vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebookSquare,
+  faXTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-library.add(faFacebookSquare, faInstagram, faLinkedin);
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+library.add(faFacebookSquare, faInstagram, faLinkedin, faGithub, faX);
 
 const app = createApp(App);
 

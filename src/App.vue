@@ -9,11 +9,7 @@
         class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors"
       >
         <div class="flex flex-col">
-          <ProfileHeader
-            :name="portfolio.name"
-            :title="portfolio.title"
-            :introduction="portfolio.introduction"
-          />
+          <ProfileHeader :introduction="portfolio.introduction" />
           <social-section :socials="portfolio.socials" />
         </div>
       </div>

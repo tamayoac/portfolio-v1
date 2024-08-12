@@ -30,8 +30,14 @@ const props = defineProps<{
   socials: Social[];
 }>();
 
+const ICON_PREFIXES: { [key: string]: string } = {
+  fa: "fab",
+  fas: "fas",
+  si: "si",
+};
+
 function getIconPrefix(provider: string): string {
-  return provider === "fa" ? "fab" : "fas";
+  return ICON_PREFIXES[provider] || "fas";
 }
 
 function getIconName(name: string): string {

@@ -1,19 +1,29 @@
 <template>
   <div class="name-title-details">
-    <h1>{{ name }}</h1>
-    <h2>{{ title }}</h2>
-    <p>{{ introduction }}</p>
+    <portable-text :value="introduction" :components="components" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, h } from "vue";
 
 const props = defineProps<{
-  name: string;
-  title: string;
   introduction: string;
 }>();
+
+const components = {
+  block: {
+    normal: (_: any, { slots }: any) => {
+      return h("p", { class: "text-2xl mb-4" }, slots.default?.());
+    },
+    h1: (_: any, { slots }: any) => {
+      return h("h1", { class: "text-5xl text-indigo-800" }, slots.default?.());
+    },
+    h4: (_: any, { slots }: any) => {
+      return h("h4", { class: "text-lg font-light my-3" }, slots.default?.());
+    },
+  },
+};
 </script>
 
 <style scoped>
