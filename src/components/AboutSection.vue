@@ -1,5 +1,5 @@
 <template>
-  <div class="text-sm text-gray-400 px-10 py-6">
+  <div class="text-md text-gray-400 px-14 py-6">
     <portable-text :value="about" />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { defineProps } from "vue";
 
 const props = defineProps<{
-  about: Array<string>;
+  about: string;
 }>();
 </script>
 

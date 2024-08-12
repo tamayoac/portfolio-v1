@@ -9,8 +9,8 @@
         class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors"
       >
         <div class="flex flex-col">
-          <ProfileHeader :introduction="portfolio.introduction" />
-          <social-section :socials="portfolio.socials" />
+          <ProfileHeader :introduction="portfolio?.introduction" />
+          <social-section :socials="portfolio?.socials" />
         </div>
       </div>
       <div
@@ -19,7 +19,7 @@
         <div class="flex justify-end">
           <DarkModeToggle />
         </div>
-        <about-section :about="portfolio.about" />
+        <about-section :about="portfolio?.about" />
         <experience-list :experiences="portfolio?.experiences" />
       </div>
     </div>

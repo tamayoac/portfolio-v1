@@ -1,10 +1,10 @@
 <template>
-  <div class="px-10 py-6">
+  <div class="px-14 py-6">
     <ul v-if="hasExperiences">
       <li
         v-for="experience in sortedExperiences"
         :key="experience._id"
-        class="flex flex-wrap p-3 rounded-lg hover:shadow-md hover:bg-gray-500 dark:hover:bg-indigo-800"
+        class="flex flex-wrap py-3"
       >
         <div class="flex-grow-0 flex-shrink-0 basis-1/5">
           <div class="text-xs font-bold text-gray-400 py-1">
@@ -12,17 +12,18 @@
           </div>
         </div>
         <div class="flex-grow flex-shrink basis-0">
-          <h1 class="text-lg hover:text-blue-500 text-black dark:text-white">
+          <a
+            :href="experience.link"
+            class="text-lg dark:hover:text-indigo-700 text-black dark:text-white"
+          >
             {{ experience.jobTitle }} •
-            <a :href="experience.link" target="_blank">{{
-              experience.company
-            }}</a>
-          </h1>
-          <div class="text-xs text-gray-400">
+            <a target="_blank">{{ experience.company }}</a>
+          </a>
+          <div class="text-sm text-gray-400 pt-2">
             <portable-text :value="experience.description" />
           </div>
 
-          <ul class="flex flex-wrap gap-2 mt-2">
+          <ul class="flex flex-wrap gap-2 mt-4">
             <framework-pill
               v-for="framework in experience.frameworks"
               :key="framework.name"
