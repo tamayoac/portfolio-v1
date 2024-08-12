@@ -4,7 +4,7 @@
     id="app"
     class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors"
   >
-    <div class="flex h-full">
+    <div class="flex h-screen">
       <div
         class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors"
       >
@@ -23,7 +23,7 @@
         <div class="flex justify-end">
           <DarkModeToggle />
         </div>
-        <about-section />
+        <about-section :about="portfolio.about" />
         <experience-list :experiences="portfolio?.experiences" />
       </div>
     </div>
@@ -31,11 +31,11 @@
 </template>
 
 <script setup lang="ts">
-import ProfileHeader from "./components/ProfileHeader.vue";
-import AboutSection from "./components/AboutSection.vue";
-import ExperienceList from "./components/ExperienceList.vue";
-import DarkModeToggle from "./components/Common/DarkModeToggle.vue";
-import SocialSection from "./components/SocialSection.vue";
+import ProfileHeader from "@/components/ProfileHeader.vue";
+import AboutSection from "@/components/AboutSection.vue";
+import ExperienceList from "@/components/ExperienceList.vue";
+import DarkModeToggle from "@/components/Common/DarkModeToggle.vue";
+import SocialSection from "@/components/SocialSection.vue";
 
 import { usePortfolioStore } from "@/store/portfolioStore";
 import { storeToRefs } from "pinia";

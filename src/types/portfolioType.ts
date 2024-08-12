@@ -6,6 +6,7 @@ export interface Portfolio {
   name: string;
   title: string;
   introduction: string;
+  about: string;
   socials: Social[];
   experiences: Experience[];
 }

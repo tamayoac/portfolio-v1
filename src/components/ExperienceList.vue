@@ -1,10 +1,10 @@
 <template>
-  <div class="experiences">
+  <div class="px-10 py-6">
     <ul v-if="experiences.length">
       <li
         v-for="experience in experiences"
         :key="experience._id"
-        class="flex flex-wrap p-3 rounded-lg hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        class="flex flex-wrap p-3 rounded-lg hover:shadow-md hover:bg-gray-500 dark:hover:bg-indigo-900"
       >
         <div class="flex-grow-0 flex-shrink-0 basis-1/5">
           <div class="text-xs">
@@ -18,16 +18,14 @@
               experience.company
             }}</a>
           </h1>
-          <p>{{ experience.description }}</p>
+          <div class="text-xs">{{ experience.description }}</div>
 
           <ul class="flex flex-wrap gap-2 mt-2">
-            <li
+            <framework-pill
               v-for="framework in experience.frameworks"
               :key="framework.name"
-              class="px-3 py-1 bg-blue-500 text-white rounded-full text-sm shadow-md hover:bg-blue-600 transition-colors"
-            >
-              {{ framework.name }}
-            </li>
+              :framework="framework"
+            />
           </ul>
         </div>
       </li>
@@ -38,6 +36,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 import { Framework } from "@/types/frameworkType";
+import FrameworkPill from "@/components/Common/FrameworkPill.vue";
 const props = defineProps<{
   experiences: Array<{
     _id: string;
@@ -58,9 +57,6 @@ const formatYear = (dateString: string) => {
 </script>
 
 <style scoped>
-.experiences {
-  padding: 20px;
-}
 h2 {
   font-size: 1.8em;
   margin-bottom: 10px;

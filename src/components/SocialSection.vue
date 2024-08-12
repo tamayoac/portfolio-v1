@@ -1,15 +1,20 @@
 <template>
   <div class="socials-container">
-    <ul class="space-y-2">
-      <li v-for="social in socials" :key="social._id">
+    <ul class="flex flex-row">
+      <li v-for="social in socials" :key="social._id" class="px-2">
         <a
           :href="social.link"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center space-x-2 text-blue-500 hover:text-blue-700 transition-colors duration-200"
+          class="flex items-center space-x-2 transition-colors duration-200"
         >
-          <span>{{ social.name }}</span>
-          <!-- Optional icon can be added here -->
+          <font-awesome-icon
+            :icon="[
+              getIconPrefix(social.icon.provider),
+              getIconName(social.icon.name),
+            ]"
+            class="w-6 h-6"
+          />
         </a>
       </li>
     </ul>
@@ -17,14 +22,24 @@
 </template>
 
 <script setup lang="ts">
-import { Social } from "@/types/socialType";
 import { defineProps } from "vue";
-// Define the props for the Socials component
+import { Social } from "@/types/socialType";
+
+// Define the props
 const props = defineProps<{
   socials: Social[];
 }>();
-</script>
 
+function getIconPrefix(provider: string): string {
+  return provider === "fa" ? "fab" : "fas";
+}
+
+function getIconName(name: string): string {
+  return name.replace("fa-", "");
+}
+</script>
 <style scoped>
-/* No additional styles needed, using Tailwind CSS */
+.socials-container {
+  padding: 20px;
+}
 </style>

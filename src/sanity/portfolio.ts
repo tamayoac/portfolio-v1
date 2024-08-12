@@ -7,10 +7,12 @@ export const fetchPortfolio = async (): Promise<Portfolio | null> => {
       name,
       title,
       introduction,
+      about,
       "socials": socials[]->{
         _id,
         name,
-        link
+        link,
+        icon
       },
       "experiences": experiences[]->{
         _id,
