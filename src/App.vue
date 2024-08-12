@@ -20,7 +20,10 @@
           <DarkModeToggle />
         </div>
         <about-section :about="portfolio?.about" />
-        <experience-list :experiences="portfolio?.experiences" />
+        <experience-list
+          :experiences="portfolio?.experiences"
+          :useIcon="portfolio.isSvg"
+        />
       </div>
     </div>
   </div>

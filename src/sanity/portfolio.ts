@@ -8,6 +8,7 @@ export const fetchPortfolio = async (): Promise<Portfolio | null> => {
       title,
       introduction,
       about,
+      isSvg,
       "socials": socials[]->{
         _id,
         name,
@@ -22,7 +23,11 @@ export const fetchPortfolio = async (): Promise<Portfolio | null> => {
         from,
         to,
         link,
-        "frameworks": frameworks[]->{name, version}
+        "frameworks": frameworks[]->{
+          name, 
+          version, 
+          svgIcon
+        }
       }
     }`;
 

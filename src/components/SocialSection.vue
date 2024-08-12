@@ -1,7 +1,7 @@
 <template>
   <div class="socials-container">
-    <ul class="flex flex-row">
-      <li v-for="social in socials" :key="social._id" class="px-2">
+    <ul v-if="hasSocials" class="flex flex-row">
+      <li v-for="social in socialList" :key="social._id" class="px-2">
         <a
           :href="social.link"
           target="_blank"
@@ -22,13 +22,18 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, computed } from "vue";
 import { Social } from "@/types/socialType";
 
-// Define the props
 const props = defineProps<{
   socials: Social[];
 }>();
+
+const socialList = computed(() => {
+  return props.socials;
+});
+
+const hasSocials = computed(() => props.socials.length > 0);
 
 const ICON_PREFIXES: { [key: string]: string } = {
   fa: "fab",

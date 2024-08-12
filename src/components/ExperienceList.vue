@@ -23,13 +23,20 @@
             <portable-text :value="experience.description" />
           </div>
 
-          <ul class="flex flex-wrap gap-2 mt-4">
+          <div v-if="useIcon" class="icon-container gap-3">
+            <CustomSVG
+              v-for="framework in experience.frameworks"
+              :key="framework.name"
+              :framework="framework"
+            />
+          </div>
+          <div v-else class="icon-container gap-2">
             <framework-pill
               v-for="framework in experience.frameworks"
               :key="framework.name"
               :framework="framework"
             />
-          </ul>
+          </div>
         </div>
       </li>
     </ul>
@@ -39,9 +46,11 @@
 <script setup lang="ts">
 import { defineProps, computed } from "vue";
 import FrameworkPill from "@/components/Common/FrameworkPill.vue";
+import CustomSVG from "@/components/Common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";
 const props = defineProps<{
   experiences: Experience[];
+  useIcon: boolean;
 }>();
 
 const hasExperiences = computed(() => props.experiences.length > 0);
@@ -61,6 +70,9 @@ const formatYear = (dateString: string) => {
 </script>
 
 <style scoped>
+.icon-container {
+  @apply flex flex-wrap mt-4;
+}
 h2 {
   font-size: 1.8em;
   margin-bottom: 10px;

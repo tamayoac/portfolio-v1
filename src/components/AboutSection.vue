@@ -1,15 +1,19 @@
 <template>
   <div class="text-md text-gray-400 px-14 py-6">
-    <portable-text :value="about" />
+    <portable-text :value="aboutContent" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, computed } from "vue";
 
 const props = defineProps<{
   about: string;
 }>();
+
+const aboutContent = computed(() => {
+  return props.about;
+});
 </script>
 
 <style scoped>

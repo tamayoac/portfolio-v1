@@ -1,15 +1,19 @@
 <template>
   <div class="name-title-details">
-    <portable-text :value="introduction" :components="components" />
+    <portable-text :value="introductionContent" :components="components" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, h } from "vue";
+import { defineProps, h, computed } from "vue";
 
 const props = defineProps<{
   introduction: string;
 }>();
+
+const introductionContent = computed(() => {
+  return props.introduction;
+});
 
 const components = {
   block: {

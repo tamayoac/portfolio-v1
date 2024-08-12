@@ -7,11 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-
+import { defineProps, computed } from "vue";
+import { Framework } from "@/types/frameworkType";
 const props = defineProps<{
-  framework: {
-    name: string;
-  };
+  framework: Framework;
 }>();
+
+const frameworkSvg = computed(() => props.framework.svgIcon);
 </script>

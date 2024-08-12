@@ -6,6 +6,7 @@ export interface Portfolio {
   name: string;
   introduction: string;
   about: string;
+  isSvg: boolean;
   socials: Social[];
   experiences: Experience[];
 }
