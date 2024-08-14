@@ -9,7 +9,7 @@
         class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors"
       >
         <div class="flex flex-col">
-          <ProfileHeader :introduction="portfolio?.introduction" />
+          <profile-header :introduction="portfolio?.introduction" />
           <social-section :socials="portfolio?.socials" />
         </div>
       </div>
@@ -17,12 +17,20 @@
         class="right-section flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 transition-colors flex flex-col"
       >
         <div class="flex justify-end">
-          <DarkModeToggle />
+          <dark-mode-toggle />
         </div>
         <about-section :about="portfolio?.about" />
         <experience-list
-          :experiences="portfolio?.experiences"
+          v-for="experience in sortedExperiences"
+          :key="experience._id"
+          :experience="experience"
           :useIcon="portfolio.isSvg"
+          class="flex flex-wrap py-3 hover:bg-indigo-900 hover:shadow-indigo-800/40 hover:shadow-md hover:rounded-md"
+        />
+        <project-list
+          v-for="project in portfolio?.projects"
+          :key="project._id"
+          :project="project"
         />
       </div>
     </div>
@@ -35,16 +43,31 @@ import AboutSection from "@/components/AboutSection.vue";
 import ExperienceList from "@/components/ExperienceList.vue";
 import DarkModeToggle from "@/components/Common/DarkModeToggle.vue";
 import SocialSection from "@/components/SocialSection.vue";
-
+import ProjectList from "./components/ProjectList.vue";
 import { usePortfolioStore } from "@/store/portfolioStore";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
+import { Experience } from "./types/experienceType";
 
 const portfolioStore = usePortfolioStore();
 
 const { portfolio, loading, error } = storeToRefs(portfolioStore);
 
 const { loadPortfolio } = portfolioStore;
+
+const hasExperiences = computed(() => {
+  return (portfolio.value?.experiences || []).length > 0;
+});
+
+const sortedExperiences = computed<Experience[]>(() => {
+  const experiences = portfolio.value?.experiences || [];
+
+  return [...experiences].sort((a, b) => {
+    const dateA = new Date(a.to || a.from).getTime();
+    const dateB = new Date(b.to || b.from).getTime();
+    return dateB - dateA;
+  });
+});
 
 onMounted(async () => {
   await loadPortfolio();

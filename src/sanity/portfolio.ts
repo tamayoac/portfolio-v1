@@ -28,7 +28,18 @@ export const fetchPortfolio = async (): Promise<Portfolio | null> => {
           version, 
           svgIcon
         }
-      }
+      },
+      "projects": projects[]->{
+          name, 
+          description, 
+          projectUrl,
+          images,
+          "technologies": technologies[]->{
+            name, 
+            version, 
+            svgIcon
+          }
+        }
     }`;
 
     const portfolio = await sanityClient.fetch<Portfolio>(query);

@@ -1,4 +1,5 @@
 import { Experience } from "./experienceType";
+import { Project } from "./projectType";
 import { Social } from "./socialType";
 
 export interface Portfolio {
@@ -9,4 +10,5 @@ export interface Portfolio {
   isSvg: boolean;
   socials: Social[];
   experiences: Experience[];
+  projects: Project[];
 }

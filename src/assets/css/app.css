@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header {
+  @apply text-lg dark:hover:text-indigo-700 text-black dark:text-white;
+}
+  
+.description {
+  @apply text-sm text-gray-400 pt-2;
+}
+.icon-container {
+    @apply flex flex-wrap mt-4;
+  }

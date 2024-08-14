@@ -2,7 +2,7 @@
   <li
     class="px-3 py-1 bg-indigo-800 text-indigo-300 rounded-full text-xs transition-colors"
   >
-    {{ framework.name }}
+    {{ frameworkName }}
   </li>
 </template>
 
@@ -13,5 +13,5 @@ const props = defineProps<{
   framework: Framework;
 }>();
 
-const frameworkSvg = computed(() => props.framework.svgIcon);
+const frameworkName = computed(() => props.framework.name);
 </script>
