@@ -21,7 +21,7 @@ const components = {
       return h("p", { class: "text-2xl mb-4" }, slots.default?.());
     },
     h1: (_: any, { slots }: any) => {
-      return h("h1", { class: "text-5xl text-indigo-800" }, slots.default?.());
+      return h("h1", { class: "text-5xl text-indigo-600" }, slots.default?.());
     },
     h4: (_: any, { slots }: any) => {
       return h("h4", { class: "text-lg font-light my-3" }, slots.default?.());

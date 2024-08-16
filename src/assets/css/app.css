@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .header {
-  @apply text-lg dark:hover:text-indigo-700 text-black dark:text-white;
+  @apply text-lg dark:hover:text-indigo-600 text-black dark:text-white;
 }
   
 .description {

@@ -4,7 +4,7 @@
     id="app"
     class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors"
   >
-    <div class="flex h-screen">
+    <div class="flex flex-col md:flex-row h-screen">
       <div
         class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors"
       >
@@ -25,7 +25,7 @@
           :key="experience._id"
           :experience="experience"
           :useIcon="portfolio.isSvg"
-          class="flex flex-wrap py-3 hover:bg-indigo-900 hover:shadow-indigo-800/40 hover:shadow-md hover:rounded-md"
+          class="flex flex-wrap py-3"
         />
         <project-list
           v-for="project in portfolio?.projects"
