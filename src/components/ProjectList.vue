@@ -13,7 +13,7 @@
     </div>
     <div class="flex-grow flex-shrink basis-0">
       <div class="header">
-        <a :href="project.projectUrl">{{ project.name }}</a>
+        <a :href="project.projectUrl" target="_blank">{{ project.name }}</a>
       </div>
       <div class="description">{{ project.description }}</div>
       <div class="icon-container gap-3 mt-4">

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-md text-black dark:text-gray-400 px-6 py-6">
+  <div class="text-md px-6 py-6">
     <portable-text :value="aboutContent" />
   </div>
 </template>

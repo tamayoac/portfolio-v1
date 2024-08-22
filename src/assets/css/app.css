@@ -7,7 +7,7 @@
 }
   
 .description {
-  @apply text-sm text-gray-400 pt-2;
+  @apply text-sm pt-2;
 }
 .icon-container {
     @apply flex flex-wrap mt-4;

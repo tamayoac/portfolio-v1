@@ -2,11 +2,11 @@
   <div
     v-if="portfolio"
     id="app"
-    class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors"
+    class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white"
   >
     <div class="flex flex-col md:flex-row h-screen">
       <div
-        class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors"
+        class="left-section flex-1 bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors duration-500"
       >
         <div class="flex flex-col">
           <profile-header :introduction="portfolio?.introduction" />
@@ -14,9 +14,9 @@
         </div>
       </div>
       <div
-        class="right-section flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 transition-colors flex flex-col"
+        class="right-section flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 transition-colors flex flex-col duration-500"
       >
-        <div class="flex justify-end">
+        <div class="flex justify-end px-8">
           <dark-mode-toggle />
         </div>
         <about-section :about="portfolio?.about" />
@@ -27,6 +27,7 @@
           :useIcon="portfolio.isSvg"
           class="flex flex-wrap py-3"
         />
+        <div class="border-t border-gray-800"></div>
         <project-list
           v-for="project in portfolio?.projects"
           :key="project._id"

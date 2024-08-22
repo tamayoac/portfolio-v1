@@ -1,7 +1,7 @@
 <template>
   <div class="px-6 py-6">
     <div class="flex-grow-0 flex-shrink-0 basis-1/5">
-      <div class="text-xs font-bold text-gray-400 py-1">
+      <div class="text-xs font-bold py-1">
         {{ formatYear(experience.from) }} - {{ formatYear(experience.to) }}
       </div>
     </div>

@@ -6,7 +6,7 @@
           :href="social.link"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center space-x-2 transition-colors duration-200"
+          class="flex items-center space-x-2 transition-colors"
         >
           <font-awesome-icon
             :icon="[
