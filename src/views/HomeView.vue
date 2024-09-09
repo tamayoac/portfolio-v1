@@ -32,13 +32,9 @@ import { Experience } from "../types/experienceType";
 
 const portfolioStore = usePortfolioStore();
 
-const { portfolio, loading, error } = storeToRefs(portfolioStore);
+const { portfolio } = storeToRefs(portfolioStore);
 
 const { loadPortfolio } = portfolioStore;
-
-const hasExperiences = computed(() => {
-  return (portfolio.value?.experiences || []).length > 0;
-});
 
 const sortedExperiences = computed<Experience[]>(() => {
   const experiences = portfolio.value?.experiences || [];
