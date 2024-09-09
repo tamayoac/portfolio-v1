@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { defineProps, computed } from "vue";
-import SanityText from "./common/SanityText.vue";
+import SanityText from "@/components/common/SanityText.vue";
 const props = defineProps<{
   about: string;
 }>();
