@@ -1,4 +1,5 @@
 import { createClient } from "@sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
 
 const sanityClient = createClient({
   projectId: process.env.VUE_APP_SANITY_PROJECT_ID || "",
@@ -6,5 +7,10 @@ const sanityClient = createClient({
   apiVersion: process.env.VUE_APP_SANITY_API_VERSION || "",
   useCdn: process.env.VUE_APP_SANITY_USE_CDN === "true",
 });
+const builder = imageUrlBuilder(sanityClient);
 
 export default sanityClient;
+
+export function getImageUrl(source: any) {
+  return builder.image(source).url();
+}

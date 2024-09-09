@@ -11,7 +11,7 @@
         <a target="_blank">{{ experience.company }}</a>
       </a>
       <div class="description">
-        <portable-text :value="experience.description" />
+        <sanity-text :value="experience.description" />
       </div>
 
       <div v-if="useIcon" class="icon-container gap-3">
@@ -34,8 +34,9 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import FrameworkPill from "@/components/Common/FrameworkPill.vue";
-import CustomSVG from "@/components/Common/CustomSVG.vue";
+import SanityText from "@/components/common/SanityText.vue";
+import FrameworkPill from "@/components/common/FrameworkPill.vue";
+import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";
 const props = defineProps<{
   experience: Experience;

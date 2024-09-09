@@ -30,10 +30,10 @@ const props = defineProps<{
 }>();
 
 const socialList = computed(() => {
-  return props.socials;
+  return props.socials || [];
 });
 
-const hasSocials = computed(() => props.socials.length > 0);
+const hasSocials = computed(() => socialList.value.length > 0);
 
 const ICON_PREFIXES: { [key: string]: string } = {
   fa: "fab",

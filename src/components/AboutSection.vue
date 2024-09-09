@@ -1,12 +1,12 @@
 <template>
   <div class="text-md px-6 py-6">
-    <portable-text :value="aboutContent" />
+    <sanity-text :value="aboutContent" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps, computed } from "vue";
-
+import SanityText from "./common/SanityText.vue";
 const props = defineProps<{
   about: string;
 }>();
