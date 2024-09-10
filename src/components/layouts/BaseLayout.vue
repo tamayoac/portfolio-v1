@@ -8,10 +8,7 @@
         :class="leftSectionClass"
         class="bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors transition-width duration-500 ease-in-out"
       >
-        <div
-          v-if="!isLoading"
-          class="flex flex-col justify-between items-stretch mb-[24rem]"
-        >
+        <div v-if="!isLoading" class="flex flex-col">
           <profile-header :introduction="portfolioData?.introduction" />
           <social-section :socials="portfolioData?.socials" />
         </div>
@@ -28,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import ProfileHeader from "@/components/ProfileHeader";
-import SocialSection from "@/components/SocialSection";
+import ProfileHeader from "@/components/ProfileHeader.vue";
+import SocialSection from "@/components/SocialSection.vue";
 import { usePortfolioStore } from "@/store/portfolioStore";
 import { storeToRefs } from "pinia";
 import { onMounted, computed } from "vue";

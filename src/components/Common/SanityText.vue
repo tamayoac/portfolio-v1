@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <portable-text :value="value" :components="customComponents" />
-  </div>
+  <portable-text :value="value" :components="customComponents" />
 </template>
 
 <script setup lang="ts">

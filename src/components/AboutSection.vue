@@ -8,7 +8,7 @@
 import { defineProps, computed } from "vue";
 import SanityText from "@/components/common/SanityText.vue";
 const props = defineProps<{
-  about: string;
+  about?: string;
 }>();
 
 const aboutContent = computed(() => {

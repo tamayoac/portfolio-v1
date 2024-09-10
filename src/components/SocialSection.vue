@@ -26,7 +26,7 @@ import { defineProps, computed } from "vue";
 import { Social } from "@/types/socialType";
 
 const props = defineProps<{
-  socials: Social[];
+  socials?: Social[];
 }>();
 
 const socialList = computed(() => {

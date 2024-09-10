@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import DarkModeToggle from "@/components/common/DarkModeToggle.vue";
-import AboutSection from "@/components/AboutSection";
-import ExperienceList from "@/components/ExperienceList";
-import ProjectList from "@/components/ProjectList";
+import AboutSection from "@/components/AboutSection.vue";
+import ExperienceList from "@/components/ExperienceList.vue";
+import ProjectList from "@/components/ProjectList.vue";
 import { usePortfolioStore } from "@/store/portfolioStore";
 import { storeToRefs } from "pinia";
 import { onMounted, computed } from "vue";

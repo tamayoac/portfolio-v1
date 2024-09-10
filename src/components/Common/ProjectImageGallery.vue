@@ -43,9 +43,9 @@
 import { SanityImage } from "@/types/sanityImageType";
 import { defineProps, ref } from "vue";
 import { getImageUrl } from "@/sanityClient";
-import { SanityClient } from "@sanity/client";
+
 const props = defineProps<{
-  images: Array<SanityImage>;
+  images?: Array<SanityImage>;
 }>();
 
 const selectedImage = ref<SanityImage | null>(null);

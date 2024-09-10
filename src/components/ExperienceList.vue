@@ -39,8 +39,8 @@ import FrameworkPill from "@/components/common/FrameworkPill.vue";
 import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";
 const props = defineProps<{
-  experience: Experience;
-  useIcon: boolean;
+  experience?: Experience;
+  useIcon?: boolean;
 }>();
 
 const formatYear = (dateString: string) => {
