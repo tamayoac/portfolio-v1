@@ -11,7 +11,7 @@
     </div>
 
     <h2 class="text-2xl font-bold mb-4">{{ currentProject?.name }}</h2>
-    <sanity-text :value="currentProject?.description" />
+    <custom-text :value="currentProject?.description" />
 
     <project-image-gallery :images="currentProject?.images" />
   </div>
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import ProjectImageGallery from "@/components/common/ProjectImageGallery.vue";
-import SanityText from "@/components/common/SanityText.vue";
+import CustomText from "@/components/common/CustomText.vue";
 import DarkModeToggle from "@/components/common/DarkModeToggle.vue";
 import { useRoute, useRouter } from "vue-router";
 import { computed } from "vue";

@@ -2,28 +2,28 @@
   <div class="px-6 py-6">
     <div class="flex-grow-0 flex-shrink-0 basis-1/5">
       <div class="text-xs font-bold py-1">
-        {{ formatYear(experience.from) }} - {{ formatYear(experience.to) }}
+        {{ formatYear(experience?.from) }} - {{ formatYear(experience?.to) }}
       </div>
     </div>
     <div class="flex-grow flex-shrink basis-0">
-      <a :href="experience.link" class="header">
-        {{ experience.jobTitle }} •
-        <a target="_blank">{{ experience.company }}</a>
+      <a :href="experience?.link" class="header">
+        {{ experience?.jobTitle }} •
+        <a target="_blank">{{ experience?.company }}</a>
       </a>
       <div class="description">
-        <sanity-text :value="experience.description" />
+        <custom-text :value="experience?.description" />
       </div>
 
       <div v-if="useIcon" class="icon-container gap-3">
         <CustomSVG
-          v-for="framework in experience.frameworks"
+          v-for="framework in experience?.frameworks"
           :key="framework.name"
           :framework="framework"
         />
       </div>
       <div v-else class="icon-container gap-2">
         <framework-pill
-          v-for="framework in experience.frameworks"
+          v-for="framework in experience?.frameworks"
           :key="framework.name"
           :framework="framework"
         />
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import SanityText from "./common/SanityText.vue";
+import CustomText from "@/components/common/CustomText.vue";
 import FrameworkPill from "@/components/common/FrameworkPill.vue";
 import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";

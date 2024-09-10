@@ -1,12 +1,12 @@
 <template>
   <div class="name-title-details">
-    <sanity-text :value="introductionContent" />
+    <custom-text :value="introductionContent" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps, h, computed } from "vue";
-import SanityText from "./common/SanityText.vue";
+import CustomText from "@/components/common/CustomText.vue";
 
 const props = defineProps<{
   introduction?: string;

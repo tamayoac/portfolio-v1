@@ -16,7 +16,7 @@
           project.name
         }}</router-link>
       </div>
-      <sanity-text :value="project.description" />
+      <custom-text :value="project.description" />
       <div class="icon-container gap-3 mt-4">
         <CustomSVG
           v-for="technology in project.technologies"
@@ -33,7 +33,7 @@ import { Project } from "@/types/projectType";
 import { defineProps, computed } from "vue";
 import { urlFor } from "@/utils/imageUrlBuilder";
 import CustomSVG from "@/components/common/CustomSVG.vue";
-import SanityText from "./common/SanityText.vue";
+import CustomText from "@/components/common/CustomText.vue";
 const props = defineProps<{
   project: Project;
 }>();
