@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import SanityText from "@/components/common/SanityText.vue";
+import SanityText from "./common/SanityText.vue";
 import FrameworkPill from "@/components/common/FrameworkPill.vue";
 import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";

@@ -33,7 +33,7 @@ import { Project } from "@/types/projectType";
 import { defineProps, computed } from "vue";
 import { urlFor } from "@/utils/imageUrlBuilder";
 import CustomSVG from "@/components/common/CustomSVG.vue";
-import SanityText from "@/components/common/SanityText.vue";
+import SanityText from "./common/SanityText.vue";
 const props = defineProps<{
   project: Project;
 }>();
