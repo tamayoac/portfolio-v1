@@ -32,6 +32,7 @@ export const fetchPortfolio = async (): Promise<Portfolio | null> => {
       "projects": projects[]->{
           name,
           "slug": slug.current,
+          shortDescription,
           description, 
           projectUrl,
           images,

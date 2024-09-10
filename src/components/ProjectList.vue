@@ -16,7 +16,7 @@
           project.name
         }}</router-link>
       </div>
-      <custom-text :value="project.description" />
+      <custom-text :value="project.shortDescription" />
       <div class="icon-container gap-3 mt-4">
         <CustomSVG
           v-for="technology in project.technologies"
