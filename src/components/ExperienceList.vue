@@ -1,72 +1,84 @@
 <template>
-  <div class="px-6 py-6">
-    <div class="flex-grow-0 flex-shrink-0 basis-1/5">
-      <div class="text-xs font-bold py-1">
-        {{ formatYear(experience?.from) }} - {{ formatYear(experience?.to) }}
-      </div>
-    </div>
-    <div class="flex-grow flex-shrink basis-0">
-      <a :href="experience?.link" class="header">
-        {{ experience?.jobTitle }} •
-        <a target="_blank">{{ experience?.company }}</a>
-      </a>
-      <div class="description">
-        <custom-text :value="experience?.description" />
+  <article class="card-hover group">
+    <div class="flex flex-col sm:flex-row gap-4">
+      <!-- Date Column -->
+      <div class="sm:w-28 flex-shrink-0">
+        <time
+          class="text-xs font-medium text-stone-500 dark:text-stone-500 tabular-nums"
+        >
+          {{ formatYear(experience?.from) }} — {{ formatYear(experience?.to) }}
+        </time>
       </div>
 
-      <div v-if="useIcon" class="icon-container gap-3">
-        <CustomSVG
-          v-for="framework in experience?.frameworks"
-          :key="framework.name"
-          :framework="framework"
-        />
-      </div>
-      <div v-else class="icon-container gap-2">
-        <framework-pill
-          v-for="framework in experience?.frameworks"
-          :key="framework.name"
-          :framework="framework"
-        />
+      <!-- Content Column -->
+      <div class="flex-1 min-w-0">
+        <!-- Title & Company -->
+        <h3
+          class="text-base font-medium text-stone-800 dark:text-stone-200 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors"
+        >
+          <a
+            v-if="experience?.link"
+            :href="experience?.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline underline-offset-4 decoration-stone-300 dark:decoration-stone-700"
+          >
+            {{ experience?.jobTitle }}
+          </a>
+          <span v-else>{{ experience?.jobTitle }}</span>
+          <span class="text-stone-400 dark:text-stone-600 mx-2">·</span>
+          <span class="text-stone-600 dark:text-stone-400 font-normal">{{
+            experience?.company
+          }}</span>
+        </h3>
+
+        <!-- Description -->
+        <div
+          class="mt-2 text-sm text-stone-600 dark:text-stone-400 leading-relaxed"
+        >
+          <custom-text :value="experience?.description" />
+        </div>
+
+        <!-- Technologies -->
+        <div
+          v-if="useIcon && experience?.frameworks?.length"
+          class="flex flex-wrap gap-2 mt-4"
+        >
+          <CustomSVG
+            v-for="framework in experience?.frameworks"
+            :key="framework.name"
+            :framework="framework"
+          />
+        </div>
+        <div
+          v-else-if="experience?.frameworks?.length"
+          class="flex flex-wrap gap-2 mt-4"
+        >
+          <framework-pill
+            v-for="framework in experience?.frameworks"
+            :key="framework.name"
+            :framework="framework"
+          />
+        </div>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
 import CustomText from "@/components/common/CustomText.vue";
 import FrameworkPill from "@/components/common/FrameworkPill.vue";
 import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";
-const props = defineProps<{
+
+defineProps<{
   experience?: Experience;
   useIcon?: boolean;
 }>();
 
 const formatYear = (dateString: string) => {
+  if (!dateString) return "Present";
   const date = new Date(dateString);
   return date.getFullYear();
 };
 </script>
-
-<style scoped>
-h2 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-}
-h3 {
-  font-size: 1.2em;
-  margin: 5px 0;
-}
-p {
-  font-size: 1em;
-  color: #555;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  margin-bottom: 15px;
-}
-</style>

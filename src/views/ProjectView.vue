@@ -1,19 +1,46 @@
 <template>
-  <div class="px-6">
-    <div class="flex justify-between items-center">
-      <button @click="goBack" class="flex items-center space-x-2 py-2 rounded">
-        <font-awesome-icon :icon="['fas', 'arrow-left']" class="w-4 h-4" />
+  <div class="animate-fade-in">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-12">
+      <button
+        @click="goBack"
+        class="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors group"
+      >
+        <svg
+          class="w-4 h-4 transition-transform group-hover:-translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+          />
+        </svg>
+        Back
       </button>
 
-      <div>
-        <dark-mode-toggle />
-      </div>
+      <dark-mode-toggle />
     </div>
 
-    <h2 class="text-2xl font-bold mb-4">{{ currentProject?.name }}</h2>
-    <custom-text :value="currentProject?.description" />
+    <!-- Project Content -->
+    <div class="space-y-8">
+      <header>
+        <h1
+          class="font-display text-3xl font-bold text-stone-900 dark:text-stone-100 tracking-tight mb-4"
+        >
+          {{ currentProject?.name }}
+        </h1>
+      </header>
 
-    <project-image-gallery :images="currentProject?.images" />
+      <div class="prose-minimal">
+        <custom-text :value="currentProject?.description" />
+      </div>
+
+      <project-image-gallery :images="currentProject?.images" />
+    </div>
   </div>
 </template>
 

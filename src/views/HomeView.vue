@@ -1,22 +1,39 @@
 <template>
-  <div class="flex justify-end px-6">
-    <dark-mode-toggle />
-  </div>
-  <div>
-    <about-section :about="portfolio?.about" />
-    <experience-list
-      v-for="experience in sortedExperiences"
-      :key="experience._id"
-      :experience="experience"
-      :useIcon="portfolio?.isSvg"
-      class="flex flex-wrap py-3"
-    />
-    <div class="border-t border-gray-800"></div>
-    <project-list
-      v-for="project in portfolio?.projects"
-      :key="project._id"
-      :project="project"
-    />
+  <div class="space-y-16">
+    <!-- Dark Mode Toggle -->
+    <div class="flex justify-end -mt-4 -mr-2">
+      <dark-mode-toggle />
+    </div>
+
+    <!-- About Section -->
+    <section class="animate-fade-in">
+      <about-section :about="portfolio?.about" />
+    </section>
+
+    <!-- Experience Section -->
+    <section class="animate-fade-in animate-delay-100">
+      <h2 class="section-title">Experience</h2>
+      <div class="space-y-2">
+        <experience-list
+          v-for="experience in sortedExperiences"
+          :key="experience._id"
+          :experience="experience"
+          :useIcon="portfolio?.isSvg"
+        />
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="animate-fade-in animate-delay-200">
+      <h2 class="section-title">Projects</h2>
+      <div class="space-y-2">
+        <project-list
+          v-for="project in portfolio?.projects"
+          :key="project._id"
+          :project="project"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -50,15 +67,3 @@ onMounted(async () => {
   await loadPortfolio();
 });
 </script>
-
-<style>
-.app-container {
-  @apply flex h-screen;
-}
-.left-section {
-  @apply flex-1 bg-gray-100 flex items-center justify-center;
-}
-.right-section {
-  @apply flex-2 overflow-y-auto p-6;
-}
-</style>

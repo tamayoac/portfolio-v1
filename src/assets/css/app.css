@@ -1,14 +1,139 @@
+/* Font Imports - Satoshi & Cabinet Grotesk */
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.header {
-  @apply text-lg dark:hover:text-indigo-600 text-black dark:text-white;
+/* Base Styles */
+@layer base {
+  html {
+    @apply antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Typography hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-stone-900 dark:text-stone-100;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  ::selection {
+    @apply bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900;
+  }
 }
-  
-.description {
-  @apply text-sm pt-2;
-}
-.icon-container {
+
+/* Component Styles */
+@layer components {
+  .header {
+    @apply text-base font-medium text-stone-800 dark:text-stone-200 
+           hover:text-stone-900 dark:hover:text-stone-100 transition-colors duration-200;
+  }
+
+  .description {
+    @apply text-sm leading-relaxed text-stone-600 dark:text-stone-400 mt-2;
+  }
+
+  .icon-container {
     @apply flex flex-wrap mt-4;
   }
+
+  /* Section Styles */
+  .section-title {
+    @apply text-xs font-medium uppercase tracking-widest text-stone-500 dark:text-stone-500 mb-6;
+  }
+
+  /* Card/Item hover effect */
+  .card-hover {
+    @apply transition-all duration-300 rounded-lg -mx-4 px-4 py-4
+           hover:bg-stone-100/50 dark:hover:bg-stone-900/50;
+  }
+
+  /* Minimalist divider */
+  .divider {
+    @apply w-12 h-px bg-stone-300 dark:bg-stone-700 my-8;
+  }
+
+  /* Link styles */
+  .link-minimal {
+    @apply text-stone-800 dark:text-stone-200 underline decoration-stone-300 dark:decoration-stone-700 
+           underline-offset-4 hover:decoration-stone-500 dark:hover:decoration-stone-500 transition-colors;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1 text-stone-700 dark:text-stone-300 
+           hover:text-stone-900 dark:hover:text-stone-100 transition-colors;
+  }
+
+  .link-arrow::after {
+    content: "→";
+    @apply transition-transform duration-200;
+  }
+
+  .link-arrow:hover::after {
+    @apply translate-x-1;
+  }
+}
+
+/* Page Transitions */
+.slide-fade-enter-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(16px);
+  opacity: 0;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-stone-300 dark:bg-stone-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-stone-400 dark:bg-stone-600;
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+}

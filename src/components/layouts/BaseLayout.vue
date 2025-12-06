@@ -1,24 +1,40 @@
 <template>
   <div
     id="app"
-    class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white"
+    class="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 transition-colors duration-300"
   >
-    <div class="flex flex-col md:flex-row h-screen">
+    <div class="flex flex-col lg:flex-row min-h-screen">
+      <!-- Left Section - Profile -->
       <div
         :class="leftSectionClass"
-        class="bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors transition-width duration-500 ease-in-out"
+        class="bg-stone-100 dark:bg-stone-900 flex items-center justify-center transition-all duration-500 ease-out border-r border-stone-200 dark:border-stone-800"
       >
-        <div v-if="!isLoading" class="flex flex-col">
+        <div
+          v-if="!isLoading"
+          class="flex flex-col px-8 lg:px-12 py-16 lg:py-0 max-w-md animate-fade-in"
+        >
           <profile-header :introduction="portfolioData?.introduction" />
           <social-section :socials="portfolioData?.socials" />
         </div>
+
+        <!-- Loading state -->
+        <div v-else class="flex items-center justify-center">
+          <div
+            class="w-6 h-6 border-2 border-stone-300 dark:border-stone-600 border-t-stone-600 dark:border-t-stone-300 rounded-full animate-spin"
+          ></div>
+        </div>
       </div>
 
+      <!-- Right Section - Content -->
       <div
         :class="rightSectionClass"
-        class="overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 transition-colors transition-width duration-500 ease-in-out"
+        class="overflow-y-auto bg-stone-50 dark:bg-stone-950 transition-all duration-500 ease-out"
       >
-        <router-view />
+        <div class="max-w-2xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+          <transition name="slide-fade" mode="out-in">
+            <router-view />
+          </transition>
+        </div>
       </div>
     </div>
   </div>
@@ -41,11 +57,15 @@ const isLoading = loading;
 const route = useRoute();
 
 const leftSectionClass = computed(() => {
-  return route.name === "project" ? "w-full md:w-1/3" : "w-full md:w-1/2";
+  return route.name === "project"
+    ? "w-full lg:w-[35%] lg:fixed lg:h-screen lg:left-0"
+    : "w-full lg:w-1/2 lg:fixed lg:h-screen lg:left-0";
 });
 
 const rightSectionClass = computed(() => {
-  return route.name === "project" ? "w-full md:w-2/3" : "w-full md:w-1/2";
+  return route.name === "project"
+    ? "w-full lg:w-[65%] lg:ml-[35%] min-h-screen"
+    : "w-full lg:w-1/2 lg:ml-[50%] min-h-screen";
 });
 
 onMounted(async () => {

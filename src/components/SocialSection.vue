@@ -1,28 +1,29 @@
 <template>
-  <div class="socials-container">
-    <ul v-if="hasSocials" class="flex flex-row">
-      <li v-for="social in socialList" :key="social._id" class="px-2">
+  <nav v-if="hasSocials" class="mt-8" aria-label="Social links">
+    <ul class="flex flex-row items-center gap-4">
+      <li v-for="social in socialList" :key="social._id">
         <a
           :href="social.link"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center space-x-2 transition-colors"
+          class="flex items-center justify-center w-10 h-10 rounded-full text-stone-500 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all duration-200"
+          :aria-label="social.name || 'Social link'"
         >
           <font-awesome-icon
             :icon="[
               getIconPrefix(social.icon.provider),
               getIconName(social.icon.name),
             ]"
-            class="w-6 h-6"
+            class="w-5 h-5"
           />
         </a>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from "vue";
+import { computed } from "vue";
 import { Social } from "@/types/socialType";
 
 const props = defineProps<{
@@ -49,8 +50,3 @@ function getIconName(name: string): string {
   return name.replace("fa-", "");
 }
 </script>
-<style scoped>
-.socials-container {
-  padding: 20px;
-}
-</style>
