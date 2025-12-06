@@ -1,26 +1,51 @@
 <template>
-  <div class="mt-8">
-    <!-- Image Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div class="mt-6 space-y-3" v-if="imageList.length">
+    <div
+      class="relative aspect-video overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800 cursor-pointer"
+      @click="openModal(currentImage)"
+    >
+      <img
+        :src="getImageUrl(currentImage)"
+        :alt="`Project image ${currentIndex + 1}`"
+        class="w-full h-full object-cover"
+      />
       <div
-        v-for="image in images"
-        :key="image._id"
-        class="group relative aspect-video overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800 cursor-pointer"
-        @click="openModal(image)"
+        class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"
+      ></div>
+
+      <div
+        class="absolute inset-x-0 bottom-3 flex items-center justify-between px-3 text-stone-200 text-xs"
       >
-        <img
-          :src="getImageUrl(image)"
-          alt="Project image"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <!-- Overlay on hover -->
-        <div
-          class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors duration-300"
-        ></div>
+        <button
+          class="hover:text-white transition-colors disabled:opacity-40"
+          type="button"
+          @click.stop="prev"
+          :disabled="!hasPrev"
+        >
+          ‹ Prev
+        </button>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] uppercase tracking-[0.18em]">Screens</span>
+          <div class="flex items-center gap-1">
+            <span
+              v-for="(img, i) in imageList"
+              :key="img._id || i"
+              class="h-1.5 w-1.5 rounded-full transition-colors"
+              :class="i === currentIndex ? 'bg-white' : 'bg-white/40'"
+            />
+          </div>
+        </div>
+        <button
+          class="hover:text-white transition-colors disabled:opacity-40"
+          type="button"
+          @click.stop="next"
+          :disabled="!hasNext"
+        >
+          Next ›
+        </button>
       </div>
     </div>
 
-    <!-- Modal -->
     <Teleport to="body">
       <Transition name="modal">
         <div
@@ -28,12 +53,8 @@
           class="fixed inset-0 z-50 flex items-center justify-center p-4"
           @click="closeModal"
         >
-          <!-- Backdrop -->
           <div class="absolute inset-0 bg-stone-950/90 backdrop-blur-sm"></div>
-
-          <!-- Modal Content -->
           <div class="relative z-10 max-w-5xl w-full">
-            <!-- Close Button -->
             <button
               class="absolute -top-12 right-0 text-stone-400 hover:text-stone-200 transition-colors"
               @click="closeModal"
@@ -52,8 +73,6 @@
                 />
               </svg>
             </button>
-
-            <!-- Image -->
             <img
               :src="getImageUrl(selectedImage)"
               alt="Enlarged project image"
@@ -69,16 +88,33 @@
 
 <script setup lang="ts">
 import { SanityImage } from "@/types/sanityImageType";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { getImageUrl } from "@/sanityClient";
 
-defineProps<{
+const props = defineProps<{
   images?: Array<SanityImage>;
 }>();
 
+const imageList = computed(() => props.images || []);
+const currentIndex = ref(0);
+
+const hasPrev = computed(() => currentIndex.value > 0);
+const hasNext = computed(() => currentIndex.value < imageList.value.length - 1);
+
+const currentImage = computed(() => imageList.value[currentIndex.value]);
+
+const next = () => {
+  if (hasNext.value) currentIndex.value += 1;
+};
+
+const prev = () => {
+  if (hasPrev.value) currentIndex.value -= 1;
+};
+
 const selectedImage = ref<SanityImage | null>(null);
 
-const openModal = (image: SanityImage) => {
+const openModal = (image?: SanityImage) => {
+  if (!image) return;
   selectedImage.value = image;
   document.body.style.overflow = "hidden";
 };
