@@ -46,6 +46,18 @@
           <custom-text :value="project.shortDescription" />
         </div>
 
+        <!-- External URL -->
+        <div v-if="project.projectUrl" class="mt-3">
+          <a
+            :href="project.projectUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link-arrow text-sm font-medium"
+          >
+            View Live Project
+          </a>
+        </div>
+
         <!-- Technologies -->
         <div
           v-if="project.technologies?.length"
