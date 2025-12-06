@@ -27,9 +27,7 @@
 
     <!-- Project Content -->
     <div class="space-y-4">
-      <div
-        class="rounded-lg border border-stone-200/60 dark:border-stone-800/60 bg-white/75 dark:bg-stone-900/70 shadow-lg shadow-stone-900/20 backdrop-blur px-3.5 py-5 sm:px-4 sm:py-6"
-      >
+      <div class="space-y-4">
         <header class="space-y-1.5">
           <div
             class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-stone-500 dark:text-stone-500"
@@ -66,7 +64,7 @@
           </a>
         </header>
 
-        <div class="mt-4 space-y-5">
+        <div class="space-y-4">
           <div class="prose-minimal text-stone-700 dark:text-stone-200">
             <custom-text :value="currentProject?.description" />
           </div>
@@ -93,9 +91,7 @@
         </div>
       </div>
 
-      <div
-        class="rounded-lg overflow-hidden border border-stone-200/60 dark:border-stone-800/60 bg-white/65 dark:bg-stone-900/60 shadow-md shadow-stone-900/12"
-      >
+      <div class="overflow-hidden">
         <project-image-gallery :images="currentProject?.images" />
       </div>
     </div>
