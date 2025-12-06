@@ -39,26 +39,12 @@
           <custom-text :value="experience?.description" />
         </div>
 
-        <!-- Technologies -->
+        <!-- Technologies (minimal text) -->
         <div
-          v-if="useIcon && experience?.frameworks?.length"
-          class="flex flex-wrap gap-2 mt-4"
+          v-if="techText"
+          class="mt-3 text-xs text-stone-500 dark:text-stone-500"
         >
-          <CustomSVG
-            v-for="framework in experience?.frameworks"
-            :key="framework.name"
-            :framework="framework"
-          />
-        </div>
-        <div
-          v-else-if="experience?.frameworks?.length"
-          class="flex flex-wrap gap-2 mt-4"
-        >
-          <framework-pill
-            v-for="framework in experience?.frameworks"
-            :key="framework.name"
-            :framework="framework"
-          />
+          {{ techText }}
         </div>
       </div>
     </div>
@@ -67,8 +53,6 @@
 
 <script setup lang="ts">
 import CustomText from "@/components/common/CustomText.vue";
-import FrameworkPill from "@/components/common/FrameworkPill.vue";
-import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";
 import { computed } from "vue";
 
@@ -89,4 +73,10 @@ const formatMonthYear = (value?: string) => {
 
 const fromLabel = computed(() => formatMonthYear(props.experience?.from));
 const toLabel = computed(() => formatMonthYear(props.experience?.to));
+
+const techText = computed(() => {
+  const list =
+    props.experience?.frameworks?.map((f) => f.name).filter(Boolean) || [];
+  return list.length ? list.join(" · ") : "";
+});
 </script>

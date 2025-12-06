@@ -45,16 +45,12 @@
           </a>
         </div>
 
-        <!-- Technologies -->
+        <!-- Technologies (minimal text) -->
         <div
-          v-if="project.technologies?.length"
-          class="flex flex-wrap gap-2 mt-4"
+          v-if="techText"
+          class="mt-3 text-xs text-stone-500 dark:text-stone-500"
         >
-          <CustomSVG
-            v-for="technology in project.technologies"
-            :key="technology.name"
-            :framework="technology"
-          />
+          {{ techText }}
         </div>
       </div>
     </div>
@@ -63,10 +59,16 @@
 
 <script setup lang="ts">
 import { Project } from "@/types/projectType";
-import CustomSVG from "@/components/common/CustomSVG.vue";
 import CustomText from "@/components/common/CustomText.vue";
+import { computed } from "vue";
 
-defineProps<{
+const props = defineProps<{
   project: Project;
 }>();
+
+const techText = computed(() => {
+  const list =
+    props.project.technologies?.map((t) => t.name).filter(Boolean) || [];
+  return list.length ? list.join(" · ") : "";
+});
 </script>

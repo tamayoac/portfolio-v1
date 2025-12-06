@@ -6,42 +6,23 @@
     </div>
     <section class="space-y-4 animate-fade-in animate-delay-100">
       <div class="flex items-center justify-between">
-        <div
-          class="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-300"
-        >
-          <button
-            type="button"
-            class="p-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors disabled:opacity-30"
-            :disabled="!hasPrev"
-            @click="prev"
-            aria-label="Previous section"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            class="p-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors disabled:opacity-30"
-            :disabled="!hasNext"
-            @click="next"
-            aria-label="Next section"
-          >
-            ›
-          </button>
-        </div>
         <h2 class="section-title mb-0">{{ currentTitle }}</h2>
         <div
           class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-300"
         >
-          <span
+          <button
             v-for="(_, i) in slides.length"
             :key="i"
-            class="h-1 w-1 rounded-full transition-colors"
+            type="button"
+            :aria-label="`Go to slide ${i + 1}`"
+            @click="goTo(i)"
+            class="h-2 w-2 rounded-full transition-colors"
             :class="
               i === currentSlide
                 ? 'bg-stone-800 dark:bg-stone-100'
                 : 'bg-stone-400/50 dark:bg-stone-600/60'
             "
-          ></span>
+          ></button>
         </div>
       </div>
 
@@ -153,15 +134,10 @@ const currentTitle = computed(() => {
   return "Resume";
 });
 
-const hasPrev = computed(() => currentSlide.value > 0);
-const hasNext = computed(() => currentSlide.value < slides.value.length - 1);
-
-const prev = () => {
-  if (hasPrev.value) currentSlide.value -= 1;
-};
-
-const next = () => {
-  if (hasNext.value) currentSlide.value += 1;
+const goTo = (index: number) => {
+  if (index >= 0 && index < slides.value.length) {
+    currentSlide.value = index;
+  }
 };
 
 onMounted(async () => {

@@ -70,23 +70,10 @@
           </div>
 
           <div
-            v-if="currentProject?.technologies?.length"
-            class="flex flex-wrap gap-2"
+            v-if="techText"
+            class="text-sm text-stone-600 dark:text-stone-400"
           >
-            <span
-              class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-500"
-            >
-              Tech Stack
-            </span>
-            <div class="w-full flex flex-wrap gap-2">
-              <span
-                v-for="tech in currentProject?.technologies"
-                :key="tech.name"
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-[12px] font-medium"
-              >
-                <span>{{ tech.name }}</span>
-              </span>
-            </div>
+            {{ techText }}
           </div>
         </div>
       </div>
@@ -116,6 +103,13 @@ const currentProject = computed(() => {
   return portfolio.value?.projects.find(
     (project) => project.slug === route.params.slug
   );
+});
+
+const techText = computed(() => {
+  const list =
+    currentProject.value?.technologies?.map((t) => t.name).filter(Boolean) ||
+    [];
+  return list.length ? list.join(" · ") : "";
 });
 
 const goBack = () => {
