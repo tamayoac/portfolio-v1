@@ -1,19 +1,6 @@
 <template>
   <article class="card-hover group">
-    <div class="flex flex-col sm:flex-row gap-4">
-      <!-- Project Image -->
-      <div v-if="modifiedImages.length" class="sm:w-28 flex-shrink-0">
-        <div
-          class="aspect-video sm:aspect-square overflow-hidden rounded-md bg-stone-100 dark:bg-stone-800"
-        >
-          <img
-            :src="modifiedImages[0].url"
-            :alt="`${project.name} preview`"
-            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
-      </div>
-
+    <div class="flex flex-col gap-3 sm:gap-4">
       <!-- Content -->
       <div class="flex-1 min-w-0">
         <!-- Project Title -->
@@ -76,23 +63,10 @@
 
 <script setup lang="ts">
 import { Project } from "@/types/projectType";
-import { computed } from "vue";
-import { urlFor } from "@/utils/imageUrlBuilder";
 import CustomSVG from "@/components/common/CustomSVG.vue";
 import CustomText from "@/components/common/CustomText.vue";
 
-const props = defineProps<{
+defineProps<{
   project: Project;
 }>();
-
-const modifiedImages = computed(() => {
-  return (
-    props.project.images?.map((image) => {
-      return {
-        ...image,
-        url: urlFor(image).width(400).url(),
-      };
-    }) || []
-  );
-});
 </script>
