@@ -9,6 +9,7 @@ export const fetchPortfolio = async (): Promise<Portfolio | null> => {
       introduction,
       about,
       isSvg,
+      "resumeUrl": resume.asset->url,
       "socials": socials[]->{
         _id,
         name,

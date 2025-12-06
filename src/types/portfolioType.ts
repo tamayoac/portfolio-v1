@@ -8,6 +8,7 @@ export interface Portfolio {
   introduction: string;
   about: string;
   isSvg: boolean;
+  resumeUrl?: string;
   socials: Social[];
   experiences: Experience[];
   projects: Project[];

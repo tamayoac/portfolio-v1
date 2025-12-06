@@ -113,7 +113,7 @@
           </p>
         </div>
         <a
-          href="/resume.pdf"
+          :href="resumeLink"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 text-sm font-semibold text-stone-800 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-200 transition-colors"
@@ -156,6 +156,10 @@ const currentProject = computed(() => {
   return portfolio.value?.projects.find(
     (project) => project.slug === route.params.slug
   );
+});
+
+const resumeLink = computed(() => {
+  return portfolio.value?.resumeUrl || "/resume.pdf";
 });
 
 const goBack = () => {
