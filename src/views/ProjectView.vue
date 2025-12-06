@@ -26,29 +26,29 @@
     </div>
 
     <!-- Project Content -->
-    <div class="space-y-10">
+    <div class="space-y-6">
       <div
-        class="rounded-2xl border border-stone-200/70 dark:border-stone-800/70 bg-white/80 dark:bg-stone-900/70 shadow-2xl shadow-stone-900/30 backdrop-blur px-6 py-8 sm:px-10 sm:py-10"
+        class="rounded-xl border border-stone-200/60 dark:border-stone-800/60 bg-white/75 dark:bg-stone-900/70 shadow-xl shadow-stone-900/25 backdrop-blur px-4 py-6 sm:px-6 sm:py-7"
       >
-        <header class="space-y-3">
+        <header class="space-y-2">
           <div
-            class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-stone-500 dark:text-stone-500"
+            class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-stone-500 dark:text-stone-500"
           >
             <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
             Project Overview
           </div>
           <h1
-            class="font-display text-3xl sm:text-4xl font-bold text-stone-900 dark:text-stone-100 tracking-tight"
+            class="font-display text-[26px] sm:text-[30px] font-bold text-stone-900 dark:text-stone-50 tracking-tight"
           >
             {{ currentProject?.name }}
           </h1>
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="flex flex-wrap items-center gap-2">
             <a
               v-if="currentProject?.projectUrl"
               :href="currentProject?.projectUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors text-sm font-semibold"
+              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors text-sm font-semibold"
             >
               View Live Project
               <svg
@@ -68,8 +68,8 @@
           </div>
         </header>
 
-        <div class="mt-6 space-y-8">
-          <div class="prose-minimal text-stone-700 dark:text-stone-300">
+        <div class="mt-5 space-y-6">
+          <div class="prose-minimal text-stone-700 dark:text-stone-200">
             <custom-text :value="currentProject?.description" />
           </div>
 
@@ -78,7 +78,7 @@
             class="flex flex-wrap gap-2"
           >
             <span
-              class="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-500"
+              class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-500"
             >
               Tech Stack
             </span>
@@ -96,7 +96,7 @@
       </div>
 
       <div
-        class="rounded-2xl overflow-hidden border border-stone-200/70 dark:border-stone-800/70 bg-white/70 dark:bg-stone-900/60 shadow-xl shadow-stone-900/20"
+        class="rounded-xl overflow-hidden border border-stone-200/60 dark:border-stone-800/60 bg-white/65 dark:bg-stone-900/60 shadow-lg shadow-stone-900/15"
       >
         <project-image-gallery :images="currentProject?.images" />
       </div>
