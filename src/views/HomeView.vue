@@ -6,6 +6,28 @@
     </div>
     <section class="space-y-4 animate-fade-in animate-delay-100">
       <div class="flex items-center justify-between">
+        <div
+          class="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-300"
+        >
+          <button
+            type="button"
+            class="p-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors disabled:opacity-30"
+            :disabled="!hasPrev"
+            @click="prev"
+            aria-label="Previous section"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            class="p-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors disabled:opacity-30"
+            :disabled="!hasNext"
+            @click="next"
+            aria-label="Next section"
+          >
+            ›
+          </button>
+        </div>
         <h2 class="section-title mb-0">{{ currentTitle }}</h2>
         <div
           class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-300"
@@ -23,15 +45,8 @@
         </div>
       </div>
 
-      <div
-        class="space-y-3 touch-pan-y"
-        @touchstart="onTouchStart"
-        @touchend="onTouchEnd"
-        @pointerdown="onPointerDown"
-        @pointerup="onPointerUp"
-        @wheel="onWheel"
-      >
-        <transition name="carousel-slide" mode="out-in">
+      <div class="space-y-3">
+        <transition name="slide-fade" mode="out-in">
           <div :key="currentSlideKey" class="space-y-3">
             <template v-if="currentSlideKey === 'about'">
               <about-section :about="portfolio?.about" />
@@ -129,8 +144,6 @@ const resumeLink = computed(() => {
 
 const slides = ref(["about", "experience", "projects", "resume"]);
 const currentSlide = ref(0);
-const touchStartX = ref(0);
-const pointerStartX = ref(0);
 
 const currentSlideKey = computed(() => slides.value[currentSlide.value]);
 const currentTitle = computed(() => {
@@ -149,40 +162,6 @@ const prev = () => {
 
 const next = () => {
   if (hasNext.value) currentSlide.value += 1;
-};
-
-const onTouchStart = (event: TouchEvent) => {
-  touchStartX.value = event.touches[0]?.clientX ?? 0;
-};
-
-const onTouchEnd = (event: TouchEvent) => {
-  const endX = event.changedTouches[0]?.clientX ?? 0;
-  const delta = endX - touchStartX.value;
-  const threshold = 40;
-  if (delta > threshold) prev();
-  if (delta < -threshold) next();
-};
-
-const onPointerDown = (event: PointerEvent) => {
-  pointerStartX.value = event.clientX;
-};
-
-const onPointerUp = (event: PointerEvent) => {
-  const delta = event.clientX - pointerStartX.value;
-  const threshold = 40;
-  if (delta > threshold) prev();
-  if (delta < -threshold) next();
-};
-
-const onWheel = (event: WheelEvent) => {
-  if (
-    Math.abs(event.deltaX) > Math.abs(event.deltaY) &&
-    Math.abs(event.deltaX) > 20
-  ) {
-    event.preventDefault();
-    if (event.deltaX > 0) next();
-    else prev();
-  }
 };
 
 onMounted(async () => {

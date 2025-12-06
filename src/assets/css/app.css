@@ -81,20 +81,12 @@
     @apply translate-x-1;
   }
 
-  /* Carousel transition */
-  .carousel-slide-enter-active,
-  .carousel-slide-leave-active {
-    transition: all 0.45s ease;
+  .hide-scrollbar {
+    scrollbar-width: none;
   }
 
-  .carousel-slide-enter-from {
-    opacity: 0;
-    transform: translateX(16px);
-  }
-
-  .carousel-slide-leave-to {
-    opacity: 0;
-    transform: translateX(-16px);
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 
