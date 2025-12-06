@@ -7,8 +7,11 @@
       <!-- Left Section - Profile -->
       <div
         :class="leftSectionClass"
-        class="bg-stone-100 dark:bg-stone-900 flex items-center justify-center transition-all duration-500 ease-out border-r border-stone-200 dark:border-stone-800"
+        class="relative bg-stone-100 dark:bg-stone-900 flex items-center justify-center transition-all duration-500 ease-out"
       >
+        <div
+          class="pointer-events-none absolute inset-y-0 right-0 hidden lg:block w-px bg-gradient-to-b from-transparent via-stone-700/40 dark:via-stone-200/25 to-transparent"
+        ></div>
         <div
           v-if="!isLoading"
           class="flex flex-col px-8 lg:px-12 py-16 lg:py-0 max-w-md animate-fade-in"
@@ -28,7 +31,7 @@
       <!-- Right Section - Content -->
       <div
         :class="rightSectionClass"
-        class="overflow-y-auto bg-stone-50 dark:bg-stone-950 transition-all duration-500 ease-out"
+        class="overflow-y-auto bg-gradient-to-br from-stone-50 via-stone-100 to-stone-50 dark:from-stone-950 dark:via-stone-900 dark:to-black transition-all duration-500 ease-out"
       >
         <div class="max-w-2xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
           <transition name="slide-fade" mode="out-in">

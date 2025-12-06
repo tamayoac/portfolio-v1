@@ -6,7 +6,7 @@
         <time
           class="text-xs font-medium text-stone-500 dark:text-stone-500 tabular-nums"
         >
-          {{ formatYear(experience?.from) }} — {{ formatYear(experience?.to) }}
+          {{ fromYear }} — {{ toYear }}
         </time>
       </div>
 
@@ -70,15 +70,22 @@ import CustomText from "@/components/common/CustomText.vue";
 import FrameworkPill from "@/components/common/FrameworkPill.vue";
 import CustomSVG from "@/components/common/CustomSVG.vue";
 import { Experience } from "@/types/experienceType";
+import { computed } from "vue";
 
-defineProps<{
+const props = defineProps<{
   experience?: Experience;
   useIcon?: boolean;
 }>();
 
-const formatYear = (dateString: string) => {
-  if (!dateString) return "Present";
-  const date = new Date(dateString);
-  return date.getFullYear();
-};
+const fromYear = computed(() => {
+  const value = props.experience?.from;
+  if (!value) return "Present";
+  return new Date(value).getFullYear();
+});
+
+const toYear = computed(() => {
+  const value = props.experience?.to;
+  if (!value) return "Present";
+  return new Date(value).getFullYear();
+});
 </script>

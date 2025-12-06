@@ -53,7 +53,7 @@
 
   /* Card/Item hover effect */
   .card-hover {
-    @apply transition-all duration-200;
+    @apply transition-all duration-200 pb-4;
   }
 
   /* Minimalist divider */
