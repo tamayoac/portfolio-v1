@@ -35,7 +35,7 @@
 @layer components {
   .header {
     @apply text-base font-medium text-stone-800 dark:text-stone-200 
-           hover:text-stone-900 dark:hover:text-stone-100 transition-colors duration-200;
+    hover:text-stone-900 dark:hover:text-stone-100 transition-colors duration-200;
   }
 
   .description {
@@ -53,8 +53,7 @@
 
   /* Card/Item hover effect */
   .card-hover {
-    @apply transition-all duration-300 rounded-lg -mx-4 px-4 py-4
-           hover:bg-stone-100/50 dark:hover:bg-stone-900/50;
+    @apply transition-all duration-200;
   }
 
   /* Minimalist divider */
