@@ -2,11 +2,11 @@
   <article class="card-hover group">
     <div class="flex flex-col sm:flex-row gap-4">
       <!-- Date Column -->
-      <div class="sm:w-28 flex-shrink-0">
+      <div class="sm:w-36 flex-shrink-0">
         <time
           class="text-xs font-medium text-stone-500 dark:text-stone-500 tabular-nums"
         >
-          {{ fromYear }} — {{ toYear }}
+          {{ fromLabel }} — {{ toLabel }}
         </time>
       </div>
 
@@ -77,15 +77,16 @@ const props = defineProps<{
   useIcon?: boolean;
 }>();
 
-const fromYear = computed(() => {
-  const value = props.experience?.from;
+const formatMonthYear = (value?: string) => {
   if (!value) return "Present";
-  return new Date(value).getFullYear();
-});
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Present";
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    year: "numeric",
+  }).format(date);
+};
 
-const toYear = computed(() => {
-  const value = props.experience?.to;
-  if (!value) return "Present";
-  return new Date(value).getFullYear();
-});
+const fromLabel = computed(() => formatMonthYear(props.experience?.from));
+const toLabel = computed(() => formatMonthYear(props.experience?.to));
 </script>
