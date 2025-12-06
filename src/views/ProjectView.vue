@@ -98,42 +98,6 @@
       >
         <project-image-gallery :images="currentProject?.images" />
       </div>
-
-      <div
-        class="rounded-lg border border-stone-200/60 dark:border-stone-800/60 bg-white/70 dark:bg-stone-900/70 shadow-sm shadow-stone-900/10 px-3.5 py-4 sm:px-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
-      >
-        <div class="space-y-1">
-          <div
-            class="text-[11px] uppercase tracking-[0.18em] text-stone-500 dark:text-stone-500"
-          >
-            Resume
-          </div>
-          <p class="text-sm text-stone-700 dark:text-stone-300">
-            Download my latest CV to view experience, skills, and projects.
-          </p>
-        </div>
-        <a
-          :href="resumeLink"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-sm font-semibold text-stone-800 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-200 transition-colors"
-        >
-          <span>Download Resume</span>
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"
-            />
-          </svg>
-        </a>
-      </div>
     </div>
   </div>
 </template>
@@ -156,10 +120,6 @@ const currentProject = computed(() => {
   return portfolio.value?.projects.find(
     (project) => project.slug === route.params.slug
   );
-});
-
-const resumeLink = computed(() => {
-  return portfolio.value?.resumeUrl || "/resume.pdf";
 });
 
 const goBack = () => {
