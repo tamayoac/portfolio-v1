@@ -26,11 +26,11 @@
     </div>
 
     <!-- Project Content -->
-    <div class="space-y-6">
+    <div class="space-y-4">
       <div
-        class="rounded-xl border border-stone-200/60 dark:border-stone-800/60 bg-white/75 dark:bg-stone-900/70 shadow-xl shadow-stone-900/25 backdrop-blur px-4 py-6 sm:px-6 sm:py-7"
+        class="rounded-lg border border-stone-200/60 dark:border-stone-800/60 bg-white/75 dark:bg-stone-900/70 shadow-lg shadow-stone-900/20 backdrop-blur px-3.5 py-5 sm:px-4 sm:py-6"
       >
-        <header class="space-y-2">
+        <header class="space-y-1.5">
           <div
             class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-stone-500 dark:text-stone-500"
           >
@@ -38,37 +38,35 @@
             Project Overview
           </div>
           <h1
-            class="font-display text-[26px] sm:text-[30px] font-bold text-stone-900 dark:text-stone-50 tracking-tight"
+            class="font-display text-[24px] sm:text-[28px] font-bold text-stone-900 dark:text-stone-50 tracking-tight"
           >
             {{ currentProject?.name }}
           </h1>
-          <div class="flex flex-wrap items-center gap-2">
-            <a
-              v-if="currentProject?.projectUrl"
-              :href="currentProject?.projectUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors text-sm font-semibold"
+          <a
+            v-if="currentProject?.projectUrl"
+            :href="currentProject?.projectUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-stone-800 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-200 transition-colors"
+          >
+            <span>View Live Project</span>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              View Live Project
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </a>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
         </header>
 
-        <div class="mt-5 space-y-6">
+        <div class="mt-4 space-y-5">
           <div class="prose-minimal text-stone-700 dark:text-stone-200">
             <custom-text :value="currentProject?.description" />
           </div>
@@ -86,7 +84,7 @@
               <span
                 v-for="tech in currentProject?.technologies"
                 :key="tech.name"
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-medium"
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-[12px] font-medium"
               >
                 <span>{{ tech.name }}</span>
               </span>
@@ -96,7 +94,7 @@
       </div>
 
       <div
-        class="rounded-xl overflow-hidden border border-stone-200/60 dark:border-stone-800/60 bg-white/65 dark:bg-stone-900/60 shadow-lg shadow-stone-900/15"
+        class="rounded-lg overflow-hidden border border-stone-200/60 dark:border-stone-800/60 bg-white/65 dark:bg-stone-900/60 shadow-md shadow-stone-900/12"
       >
         <project-image-gallery :images="currentProject?.images" />
       </div>
