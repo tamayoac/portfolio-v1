@@ -19,7 +19,7 @@
             class="h-2 w-2 rounded-full transition-colors"
             :class="
               i === currentSlide
-                ? 'bg-stone-800 dark:bg-stone-100'
+                ? 'bg-brand-600 dark:bg-brand-300'
                 : 'bg-stone-400/50 dark:bg-stone-600/60'
             "
           ></button>

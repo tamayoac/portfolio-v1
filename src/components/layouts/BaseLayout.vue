@@ -10,7 +10,7 @@
         class="relative bg-stone-100 dark:bg-stone-900 flex items-center justify-center transition-all duration-500 ease-out"
       >
         <div
-          class="pointer-events-none absolute inset-y-0 right-0 hidden lg:block w-px bg-gradient-to-b from-transparent via-stone-700/40 dark:via-stone-200/25 to-transparent"
+          class="pointer-events-none absolute inset-y-0 right-0 hidden lg:block w-px bg-gradient-to-b from-transparent via-brand-500/35 dark:via-brand-300/25 to-transparent"
         ></div>
         <div
           v-if="!isLoading"

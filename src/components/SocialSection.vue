@@ -6,7 +6,7 @@
           :href="social.link"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-center w-10 h-10 rounded-full text-stone-500 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all duration-200"
+          class="flex items-center justify-center w-10 h-10 rounded-full text-stone-500 dark:text-stone-500 hover:text-brand-700 dark:hover:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 dark:focus-visible:ring-brand-500/70 transition-all duration-200"
           :aria-label="social.name || 'Social link'"
         >
           <font-awesome-icon

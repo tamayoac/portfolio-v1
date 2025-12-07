@@ -45,12 +45,15 @@
           </a>
         </div>
 
-        <!-- Technologies (minimal text) -->
-        <div
-          v-if="techText"
-          class="mt-3 text-xs text-stone-500 dark:text-stone-500"
-        >
-          {{ techText }}
+        <!-- Technologies (pill style) -->
+        <div v-if="techPills.length" class="mt-3 flex flex-wrap gap-2">
+          <span
+            v-for="tech in techPills"
+            :key="tech"
+            class="inline-flex items-center px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-xs font-medium text-stone-700 dark:text-stone-300"
+          >
+            {{ tech }}
+          </span>
         </div>
       </div>
     </div>
@@ -66,9 +69,7 @@ const props = defineProps<{
   project: Project;
 }>();
 
-const techText = computed(() => {
-  const list =
-    props.project.technologies?.map((t) => t.name).filter(Boolean) || [];
-  return list.length ? list.join(" · ") : "";
+const techPills = computed(() => {
+  return props.project.technologies?.map((t) => t.name).filter(Boolean) || [];
 });
 </script>

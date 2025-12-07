@@ -90,6 +90,36 @@ const defaultComponents = {
       );
     },
   },
+  list: {
+    bullet: (_: unknown, { slots }: { slots: { default?: () => unknown } }) => {
+      return h(
+        "ul",
+        {
+          class:
+            "list-disc pl-5 space-y-2 text-base text-stone-600 dark:text-stone-400 mb-3 last:mb-0",
+        },
+        slots.default?.()
+      );
+    },
+    number: (_: unknown, { slots }: { slots: { default?: () => unknown } }) => {
+      return h(
+        "ol",
+        {
+          class:
+            "list-decimal pl-5 space-y-2 text-base text-stone-600 dark:text-stone-400 mb-3 last:mb-0",
+        },
+        slots.default?.()
+      );
+    },
+  },
+  listItem: {
+    bullet: (_: unknown, { slots }: { slots: { default?: () => unknown } }) => {
+      return h("li", {}, slots.default?.());
+    },
+    number: (_: unknown, { slots }: { slots: { default?: () => unknown } }) => {
+      return h("li", {}, slots.default?.());
+    },
+  },
 };
 
 const customComponents = { ...defaultComponents, ...props.components };

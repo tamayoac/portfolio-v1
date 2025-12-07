@@ -79,8 +79,8 @@
   }
 
   .link-arrow {
-    @apply inline-flex items-center gap-1 text-stone-700 dark:text-stone-300 
-           hover:text-stone-900 dark:hover:text-stone-100 transition-colors;
+    @apply inline-flex items-center gap-1 text-brand-600 dark:text-brand-300 
+           hover:text-brand-700 dark:hover:text-brand-200 transition-colors;
   }
 
   .link-arrow::after {

@@ -39,12 +39,15 @@
           <custom-text :value="experience?.description" />
         </div>
 
-        <!-- Technologies (minimal text) -->
-        <div
-          v-if="techText"
-          class="mt-3 text-xs text-stone-500 dark:text-stone-500"
-        >
-          {{ techText }}
+        <!-- Technologies (pill style) -->
+        <div v-if="techPills.length" class="mt-3 flex flex-wrap gap-2">
+          <span
+            v-for="tech in techPills"
+            :key="tech"
+            class="inline-flex items-center px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-xs font-medium text-stone-700 dark:text-stone-300"
+          >
+            {{ tech }}
+          </span>
         </div>
       </div>
     </div>
@@ -74,9 +77,7 @@ const formatMonthYear = (value?: string) => {
 const fromLabel = computed(() => formatMonthYear(props.experience?.from));
 const toLabel = computed(() => formatMonthYear(props.experience?.to));
 
-const techText = computed(() => {
-  const list =
-    props.experience?.frameworks?.map((f) => f.name).filter(Boolean) || [];
-  return list.length ? list.join(" · ") : "";
+const techPills = computed(() => {
+  return props.experience?.frameworks?.map((f) => f.name).filter(Boolean) || [];
 });
 </script>
